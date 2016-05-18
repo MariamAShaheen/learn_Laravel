@@ -44,9 +44,17 @@
             
             <div class="content">
                 <div class="title">Laravel 5</div>
-                <?= $text; ?>
-                <h2>{{ $text }}</h2>
                 <h1>Enter Your Age</h1>
+                {!! Form::open(array('action' => 'TsController@store')) !!}
+                {!!   Form::label('name', 'Name') !!}
+                {!!  Form::text('name','Go To Work')   !!}
+                  {!!   Form::label('test', 'Test') !!}           
+                {!! Form::select('animal', array('Cats' => array('leopard' => 'Leopard'),'Dogs' => array('spaniel' => 'Spaniel'),)) !!}
+              
+              
+                {!! Form::file('image') !!}
+               {!! link_to('/ts', $title = null, $attributes = array(), $secure = true); !!}
+               {!! Form::close() !!}
             </div>
             <form action="/dashboard" method="get" >
                 <input type='hidden' name="_token" value="<?php echo csrf_token(); ?>">
