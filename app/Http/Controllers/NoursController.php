@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Nours;
 use App\Http\Requests;
-
+use Response;
 class NoursController extends Controller
 {
     /**
@@ -16,8 +16,11 @@ class NoursController extends Controller
     public function index()
     {
     $nours = Nours::all(); //Not a good idea
-    return $nours;
-    }
+        return Response::json([
+                'data' => $this->transformCollection($nours)
+        ], 200);
+}
+    
 
     /**
      * Show the form for creating a new resource.
@@ -48,7 +51,19 @@ class NoursController extends Controller
      */
     public function show($id)
     {
-        //
+        $nour = Nours::find($id);
+ 
+        if(!$nour){
+            return Response::json([
+                'error' => [
+                    'message' => 'Nour does not exist Now But He will Back Soon ISA'
+                ]
+            ], 404);
+        }
+ 
+        return Response::json([
+              'data' => $this->transform($nour)
+        ], 200);
     }
 
     /**
@@ -84,4 +99,15 @@ class NoursController extends Controller
     {
         //
     }
+
+    private function transformCollection($nours){
+         return array_map([$this, 'transform'], $nours->toArray());
 }
+ 
+    private function transform($nour){
+        return [
+           'nour_id' => $nour['id'],
+           'nour' => $nour['body']
+         ];
+}
+    }
