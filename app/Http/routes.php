@@ -16,6 +16,11 @@ Route::get('/', function () {
 });
 Route::controller('tasks','TaskController') ;
 Route::resource('ts','TsController') ;
+	
+Route::group(['prefix' => 'api/v1'], function(){
+Route::resource('nours', 'NoursController');
+});
+
 
 /*
 Route::get('/tasks','TaskController@getTasks') ;

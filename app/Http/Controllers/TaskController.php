@@ -5,14 +5,9 @@ class TaskController extends Controller
 {
    public function  getIndex(){
       $tasks=array ('Meeting my family', 'Remember nour', 'do tasks'); 
-      $output='<h1>TASKS</h1>';
-      $output.= '<ul>';
-      foreach ($tasks as $key => $task){
-          $output .='<li><a href="/tasks/show/'.$key.'">'.$task.'</a></li>';
-          } 
-      $output.='</ul>';
-      return $output;
-   }
+      return view('tasks',array('tasks'=> $tasks));
+      
+    }
  public function  getShow($id){
       $tasks=array ('Meeting my family', 'Remember nour', 'do tasks');
       return $tasks[$id];

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Nours;
 use App\Http\Requests;
-use App\Http\Requests\StoreTsRequest ;
-class TsController extends Controller
+
+class NoursController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class TsController extends Controller
      */
     public function index()
     {
-       return "this is ts/index";
+    $nours = Nours::all(); //Not a good idea
+    return $nours;
     }
 
     /**
@@ -25,7 +26,7 @@ class TsController extends Controller
      */
     public function create()
     {
-        return view('form');
+        //
     }
 
     /**
@@ -34,9 +35,9 @@ class TsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTsRequest $request)
+    public function store(Request $request)
     {
-     return 'TaskAdded' ; 
+        //
     }
 
     /**
@@ -47,7 +48,7 @@ class TsController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
